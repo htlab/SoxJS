@@ -51,7 +51,8 @@ SensorData.fromXMLString = function(xml){
     var timeRegForSensorizer = timeParserForSensorizer.exec(jQueryObject.attr("timestamp"));
     if(!timeReg && !timeRegForSensorizer){
         console.log("####### timeReg is null (id="+id+" timestamp="+jQueryObject.attr("timestamp")+")");
-        return null;
+        var timestamp = '';
+        return new SensorData(id, timestamp, rawValue, typedValue);
     }else{
         if(!timeReg){
             timeReg = timeRegForSensorizer;
