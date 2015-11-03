@@ -44,21 +44,15 @@ SensorData.fromXMLString = function(xml){
     var typedValue = jQueryObject.attr("typedvalue");
     var id = jQueryObject.attr("id");
     
-    var timeParser = /(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)Z/;
-    var timeParserForSensorizer = /(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)\+(\d+):(\d+)/;
+    var timeParser = /(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)*/;
     var timeReg = timeParser.exec(jQueryObject.attr("timestamp"));
-    var timeRegForSensorizer = timeParserForSensorizer.exec(jQueryObject.attr("timestamp"));
 
     if(!timeReg && !timeRegForSensorizer){
         console.log("####### timeReg is null (id="+id+" timestamp="+jQueryObject.attr("timestamp")+")");
         var timestamp = jQueryObject.attr("timestamp");
-        return new SensorData(id, timestamp, rawValue, typedValue);
+        return null;
     }else{
-        if(!timeReg){
-            timeReg = timeRegForSensorizer;
-        }
         var timestamp = new Date(timeReg[1], parseInt(timeReg[2])-1, timeReg[3], timeReg[4], timeReg[5], timeReg[6]);
-
         return new SensorData(id, timestamp, rawValue, typedValue);
     }
 };

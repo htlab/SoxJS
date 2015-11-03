@@ -14,6 +14,7 @@ window.onload = function() {
 		
 		//var device = new Device("SmartPhone_example");//デバイス名に_dataや_metaはつけない
 		//var device = new Device("米ドル円");//デバイス名に_dataや_metaはつけない
+		var device = new Device("weather_for_smile");//デバイス名に_dataや_metaはつけない
 		/* クライアントに繋がったら、デバイスにサブスクライブする */
 		if(!client.subscribeDevice(device)){
 			/* サーバに繋がってない場合などで、要求を送信できなかった場合はfalseが返ってくる */
