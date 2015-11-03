@@ -1,9 +1,7 @@
 var boshService = "http://sox.ht.sfc.keio.ac.jp:5280/http-bind/";
 var xmppServer = "sox.ht.sfc.keio.ac.jp";
-//var jid = "guest@sox.ht.sfc.keio.ac.jp";
-//var password = "miroguest";
-//var jid = "sensorizer@sox.ht.sfc.keio.ac.jp";
-//var password = "miromiro";
+var jid = "guest@sox.ht.sfc.keio.ac.jp";
+var password = "miroguest";
 
 window.onload = function() {
 	//$("#content").html("<span>hoge</span>");
@@ -23,7 +21,7 @@ window.onload = function() {
 		 * CREATE DEVICE INSTANCE
 		 * first create a device specifying just a name
 		 */
-		var device = new Device("テラスモール湘南駐車場");//デバイス名に_dataや_metaはつけない
+		var device = new Device("weather_for_smile");//デバイス名に_dataや_metaはつけない
 		
 		/**
 		 * try to get the device's internal information from the server
@@ -32,10 +30,10 @@ window.onload = function() {
 			/* we are failed. manually construct the device  */
 			status("Warning: Couldn't resolve device: "+device+". Continuing...");
 			var transducer = new Transducer();//create a transducer
-			transducer.name = "occupancy";
-			transducer.id = "occupancy";
+			transducer.name = "temperature";
+			transducer.id = "temperature";
 			device.addTransducer(transducer);//add the transducer to the device
-			var data = new SensorData("occupancy", new Date(), "空車", "空車");//create a value to publish
+			var data = new SensorData("temperature", new Date(), "20", "20");//create a value to publish
 			transducer.setSensorData(data);//set the value to the transducer
 			soxEvent.soxClient.publishDevice(device);//publish
 		}

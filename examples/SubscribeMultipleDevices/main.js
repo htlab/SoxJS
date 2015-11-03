@@ -14,8 +14,7 @@ window.onload = function() {
 		console.log("[main.js] Connected "+soxEvent.soxClient);
 		status("Connected: "+soxEvent.soxClient);
 		
-		var deviceNames = ["しらすの入荷情報湘南", "藤沢市役所", "江ノ島今日の天気", "神奈川県アメダス気温ランキング高温順", "江の電運行状況"];
-//		var deviceNames = ["しらすの入荷情報湘南"];
+		var deviceNames = ["weather_for_smile", "SmartPhone_example", "米ドル円"];
 		deviceNames.forEach(function(name){
 			var device = new Device(name);//デバイス名に_dataや_metaはつけない
 			/* クライアントに繋がったら、デバイスにサブスクライブする */

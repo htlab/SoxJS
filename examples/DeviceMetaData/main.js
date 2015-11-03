@@ -1,9 +1,8 @@
 var boshService = "http://sox.ht.sfc.keio.ac.jp:5280/http-bind/";
 var xmppServer = "sox.ht.sfc.keio.ac.jp";
-//var jid = "guest@sox.ht.sfc.keio.ac.jp";
-//var password = "miroguest";
-var jid = "sensorizer@sox.ht.sfc.keio.ac.jp";
-var password = "miromiro";
+var jid = "guest@sox.ht.sfc.keio.ac.jp";
+var password = "miroguest";
+
 var client = new SoxClient(boshService, xmppServer, jid, password);
 
 window.onload = function() {
@@ -20,7 +19,7 @@ window.onload = function() {
 			/**
 			 * GET DEVICE
 			 */
-			if (!soxEvent.soxClient.discoverDevices("RoppongiHillsLiveCamera")) {
+			if (!soxEvent.soxClient.discoverDevices("weather_for_smile")) {
 				status("Couldn't get device list: " + soxEvent.soxClient);
 			}
 		};

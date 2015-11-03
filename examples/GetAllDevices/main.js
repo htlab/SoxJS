@@ -21,7 +21,9 @@ window.onload = function() {
 		try {
 			console.log("[main.js] Discovered " + soxEvent.devices);
 			for (var i = 0; i < soxEvent.devices.length; i++) {
-				//if(soxEvent.devices[i].nodeName == "江ノ島今日の生活指数" || soxEvent.devices[i].nodeName == "今日は何の日4"){
+
+				// Subscribing All Device is too many and dengerous. Please filter subscribing node here.
+                
 				if(soxEvent.devices[i].nodeName == "weather_for_smile"){
 					client.subscribeDevice(soxEvent.devices[i]);
 				}
