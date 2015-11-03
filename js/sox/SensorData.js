@@ -44,11 +44,11 @@ SensorData.fromXMLString = function(xml){
     var typedValue = jQueryObject.attr("typedvalue");
     var id = jQueryObject.attr("id");
     
-    var timeParser = /(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+).(\d+)\+(\d+)/;
-    //var timeParserForSensorizer = /(\d+)-(\d+)-(\d+)T(\d+):(\d+)([A-Z]+)\+(\d+)/;
+    var timeParser = /(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)Z/;
     var timeParserForSensorizer = /(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)\+(\d+):(\d+)/;
     var timeReg = timeParser.exec(jQueryObject.attr("timestamp"));
     var timeRegForSensorizer = timeParserForSensorizer.exec(jQueryObject.attr("timestamp"));
+
     if(!timeReg && !timeRegForSensorizer){
         console.log("####### timeReg is null (id="+id+" timestamp="+jQueryObject.attr("timestamp")+")");
         var timestamp = jQueryObject.attr("timestamp");
