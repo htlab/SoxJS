@@ -6,8 +6,7 @@ var password = "miroguest";
 window.onload = function() {
 	//$("#content").html("<span>hoge</span>");
 	
-	//var client = new SoxClient(boshService, xmppServer, jid, password);
-	var client = new SoxClient(boshService, xmppServer);
+	var client = new SoxClient(boshService, xmppServer, jid, password);
 
 	var soxEventListener = new SoxEventListener();
 	soxEventListener.connected = function(soxEvent) {
@@ -21,7 +20,7 @@ window.onload = function() {
 		 * CREATE DEVICE INSTANCE
 		 * first create a device specifying just a name
 		 */
-		var device = new Device("weather_for_smile");//デバイス名に_dataや_metaはつけない
+		var device = new Device("testNode");//デバイス名に_dataや_metaはつけない
 		
 		/**
 		 * try to get the device's internal information from the server
@@ -50,12 +49,12 @@ window.onload = function() {
 		/**
 		 * specify the transducer to publish
 		 */
-		var transducer = soxEvent.device.getTransducer("occupancy");
+		var transducer = soxEvent.device.getTransducer("temperature");
 		
 		/**
 		 * create a value
 		 */
-		var data = new SensorData("occupancy", new Date(), "空車", "空車");
+		var data = new SensorData("temperature", new Date(), "25", "25");
 		
 		/**
 		 * set the value to the transducer

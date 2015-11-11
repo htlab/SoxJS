@@ -4,10 +4,11 @@ var jid = "guest@sox.ht.sfc.keio.ac.jp";
 var password = "miroguest";
 
 window.onload = function() {
-	//$("#content").html("<span>hoge</span>");
-	
+
+    // SoxServerへ接続
 	var client = new SoxClient(boshService, xmppServer, jid, password);
 	var soxEventListener = new SoxEventListener();
+
 	soxEventListener.connected = function(soxEvent) {
 		console.log("[main.js] Connected "+soxEvent.soxClient);
 		status("Connected: "+soxEvent.soxClient);
@@ -15,12 +16,14 @@ window.onload = function() {
 		//var device = new Device("SmartPhone_example");//デバイス名に_dataや_metaはつけない
 		//var device = new Device("米ドル円");//デバイス名に_dataや_metaはつけない
 		var device = new Device("weather_for_smile");//デバイス名に_dataや_metaはつけない
+
 		/* クライアントに繋がったら、デバイスにサブスクライブする */
 		if(!client.subscribeDevice(device)){
 			/* サーバに繋がってない場合などで、要求を送信できなかった場合はfalseが返ってくる */
 			status("Couldn't send subscription request: "+device);
 		}
 	};
+
 	soxEventListener.connectionFailed = function(soxEvent) {
 		status("Connection Failed: "+soxEvent.soxClient);
 	};

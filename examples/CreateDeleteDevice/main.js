@@ -11,6 +11,7 @@ window.onload = function() {
 		client.unsubscribeAll();
 
 		var soxEventListener = new SoxEventListener();
+
 		soxEventListener.connected = function(soxEvent) {
 			console.log("Connected " + soxEvent.soxClient);
 			status("Connected: " + soxEvent.soxClient);
