@@ -13,7 +13,7 @@ window.onload = function() {
 		console.log("[main.js] Connected "+soxEvent.soxClient);
 		status("Connected: "+soxEvent.soxClient);
 		
-		var device = new Device("hogehoge");//デバイス名に_dataや_metaはつけない
+		var device = new Device("hogehoge", soxEvent.soxClient);//デバイス名に_dataや_metaはつけない
 
 		/* クライアントに繋がったら、デバイスにサブスクライブする */
 		if(!client.subscribeDevice(device)){
@@ -25,6 +25,16 @@ window.onload = function() {
 	soxEventListener.connectionFailed = function(soxEvent) {
 		status("Connection Failed: "+soxEvent.soxClient);
 	};
+
+	soxEventListener.resolved = function(soxEvent) {
+		status("Device Resolved: "+soxEvent.soxClient);
+	};
+
+	soxEventListener.resolveFailed = function(soxEvent){
+		/* couldn't get device information from the server */
+		status("Resolve Failed: "+soxEvent.device+" code="+soxEvent.errorCode+" type="+soxEvent.errorType);
+	};
+
 	soxEventListener.subscribed = function(soxEvent){
 		status("Subscribed: "+soxEvent.device);
 	};

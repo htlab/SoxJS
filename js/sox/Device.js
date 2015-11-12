@@ -1,14 +1,36 @@
 /**
  * BOSHサービス(HTTP-XMPPブリッジ)のURLとXMPPサーバホスト名、ノード名を
  * 指定して、デバイスを作成する。ノード名には_dataや_metaを除いた部分を 指定する。
- * @param nodeName XMPP node name of this device. required
- * @param name name of this device. ignored for remote device
- * @param type type of this device. ignored for remote device
- * @param accessModel access model of this device. value must be one of open, authorize, whitelist, presence, and roster. ignored for remote device
- * @param publishModel publish model of this device. value must be one of open, publishers, or subscribers. ignored for remote device
- * @param transducers array of transducers of this device. ignored for remote device 
+ * とる引数の数によって挙動が異なる。
+ * 引数が2つの場合:
+ *      nodeNameとclientを引数にとり、デバイスが生成された時にDeviceを解決しに行く
+ * その他:
+ *      各情報を手動で設定
  */
-function Device(nodeName, name, type, accessModel, publishModel, transducers) {
+function Device(arg1, arg2, arg3, arg4, arg5, arg6) {
+     switch (arguments.length) {
+          case 2:
+              /**
+               * @param arg1 (nodeName) XMPP node name of this device. required
+               * @param arg2 (client) connected sox client.
+               */
+              this.initWithClient(arg1, arg2);
+              break;
+          default:
+              /**
+                * @param arg1 (nodeName) XMPP node name of this device. required
+                * @param arg2 (name) name of this device. ignored for remote device
+                * @param arg3 (type) type of this device. ignored for remote device
+                * @param arg4 (accessModel) access model of this device. value must be one of open, authorize, whitelist, presence, and roster. ignored for remote device
+                * @param arg5 (publishModel) publish model of this device. value must be one of open, publishers, or subscribers. ignored for remote device
+                * @param arg6 (transducers) array of transducers of this device. ignored for remote device 
+               */
+              this.init(arg1, arg2, arg3, arg4, arg5, arg6);
+              break;
+     }
+}
+
+Device.prototype.init = function (nodeName, name, type, accessModel, publishModel, transducers) {
 	/**
 	 * profiles of this device included in SoX specification
 	 */
@@ -32,7 +54,37 @@ function Device(nodeName, name, type, accessModel, publishModel, transducers) {
 	this.metaSubid = "";
 	this.dataSubscribed = false;
 	this.metaSubscribed = false;
-}
+};
+
+Device.prototype.initWithClient = function (nodeName, client) {
+    if (client.isConnected()){
+    	/**
+    	 * profiles of this device included in SoX specification
+    	 */
+    	this.nodeName = nodeName;
+        this.client = client;
+    	this.name = undefined;
+    	this.type = undefined;
+    	this.accessModel = undefined;
+    	this.publishModel = undefined;
+    
+    	/**
+    	 * runtime information that won't be included in meta data
+    	 */
+    	this.transducers = new Array(); // array of transducers
+    
+    	this.soxEventListener = null;
+    
+    	this.dataSubid = "";
+    	this.metaSubid = "";
+    	this.dataSubscribed = false;
+    	this.metaSubscribed = false;
+    
+        client.resolveDevice(this);
+    } else {
+        init(nodeName, client);
+    }
+};
 
 /**
 {

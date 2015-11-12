@@ -6,7 +6,8 @@ var password = "miroguest";
 window.onload = function() {
 	//$("#content").html("<span>hoge</span>");
 	
-	var client = new SoxClient(boshService, xmppServer, jid, password);
+	//var client = new SoxClient(boshService, xmppServer, jid, password);
+	var client = new SoxClient(boshService, xmppServer);
 
 	var soxEventListener = new SoxEventListener();
 	soxEventListener.connected = function(soxEvent) {
