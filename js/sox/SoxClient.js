@@ -13,6 +13,8 @@ function SoxClient(boshService, xmppServer, jid, password) {
 	this.connection = null;
 	this.soxEventListener = null;
 	this.subscribedDevices = new Array();
+
+    this.isAnonymousAllowed = true;
 }
 
 SoxClient.prototype.toString = function() {
@@ -111,9 +113,13 @@ SoxClient.prototype.connect = function() {
  * Disconnect from server
  */
 SoxClient.prototype.disconnect = function() {
-	if (!this.connection || !this.authenticated) {
-		return false;
-	}
+    if(!this.isAnonymousAllowed){
+    	if (!this.connection || !this.authenticated) {
+    		return false;
+    	}
+    } else if (!this.connection){
+        return false;
+    }
 
 	this.connection.disconnect("Because I want to...");
 	return true;
@@ -154,9 +160,13 @@ SoxClient.prototype.disconnect = function() {
 })(jQuery);
 
 SoxClient.prototype.resolveDevice = function(device) {
-	if (!this.connection || !this.authenticated) {
-		return false;
-	}
+    if(!this.isAnonymousAllowed){
+    	if (!this.connection || !this.authenticated) {
+    		return false;
+    	}
+    } else if (!this.connection){
+        return false;
+    }
 
 	var me = this;
 	console.log("[SoxClient.js] resolveDevice name=" + device.nodeName);
@@ -226,6 +236,7 @@ SoxClient.prototype.resolveDevice = function(device) {
  *         authenticated
  */
 SoxClient.prototype.createDevice = function(device) {
+
 	if (!this.isConnected() || !this.authenticated) {
 		console.log("[SoxClient.js] not connected.");
 		return false;

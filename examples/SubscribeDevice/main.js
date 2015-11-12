@@ -13,9 +13,7 @@ window.onload = function() {
 		console.log("[main.js] Connected "+soxEvent.soxClient);
 		status("Connected: "+soxEvent.soxClient);
 		
-		//var device = new Device("SmartPhone_example");//デバイス名に_dataや_metaはつけない
-		//var device = new Device("米ドル円");//デバイス名に_dataや_metaはつけない
-		var device = new Device("weather_for_smile");//デバイス名に_dataや_metaはつけない
+		var device = new Device("hogehoge");//デバイス名に_dataや_metaはつけない
 
 		/* クライアントに繋がったら、デバイスにサブスクライブする */
 		if(!client.subscribeDevice(device)){

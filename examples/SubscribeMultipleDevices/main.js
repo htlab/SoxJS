@@ -14,7 +14,7 @@ window.onload = function() {
 		console.log("[main.js] Connected "+soxEvent.soxClient);
 		status("Connected: "+soxEvent.soxClient);
 		
-		var deviceNames = ["weather_for_smile", "SmartPhone_example", "米ドル円"];
+		var deviceNames = ["hogehoge", "testNode"];
 		deviceNames.forEach(function(name){
 			var device = new Device(name);//デバイス名に_dataや_metaはつけない
 			/* クライアントに繋がったら、デバイスにサブスクライブする */

@@ -19,7 +19,7 @@ window.onload = function() {
 			/**
 			 * GET DEVICE
 			 */
-			if (!soxEvent.soxClient.discoverDevices("weather_for_smile")) {
+			if (!soxEvent.soxClient.discoverDevices("hogehoge")) {
 				status("Couldn't get device list: " + soxEvent.soxClient);
 			}
 		};

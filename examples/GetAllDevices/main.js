@@ -24,7 +24,7 @@ window.onload = function() {
 
 				// Subscribing All Device is too many and dengerous. Please filter subscribing node here.
                 
-				if(soxEvent.devices[i].nodeName == "weather_for_smile"){
+				if(soxEvent.devices[i].nodeName == "hogehoge"){
 					client.subscribeDevice(soxEvent.devices[i]);
 				}
 			}
