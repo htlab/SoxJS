@@ -187,9 +187,13 @@ SoxClient.prototype.resolveDevice = function(device) {
 			device.type = $(deviceElement).attr('type');
 			
 			var transducerElements = $($(data).text()); 
+            if ($(data).text().trim() == ""){
+                transducerElements = $($($($(data)).html()).html());
+            }
+
 			for (var i = 0; i < transducerElements.length; i++) {
 				var transducer = Transducer.fromXML(transducerElements.eq(i));
-				if (device.getTransducer(transducer.id)) {
+				if (device.getTransducer(transducer.id) || transducer.id == undefined) {
 					continue;
 				}
 				device.addTransducer(transducer);
@@ -759,10 +763,10 @@ SoxClient.prototype._processLastPublishedItem = function(node, id, entry, timest
 			console.log("[SoxClient.js] SoxClient::_processLastPublishedItem: Created " + transducer);
 		}
 
-		/*
-		 * if (this.soxEventListener) { this.soxEventListener.metaDataReceived({
-		 * soxClient : this, device : this.subscribedDevices[nodeName], }); }
-		 */
+		
+		if (this.soxEventListener) { this.soxEventListener.metaDataReceived({
+		soxClient : this, device : this.subscribedDevices[nodeName], }); }
+		
 	} else if (node.indexOf("_data") != -1) {
 		var updatedTransducers = new Array();
 		var transducerValues = $(entry).find("transducerValue");
