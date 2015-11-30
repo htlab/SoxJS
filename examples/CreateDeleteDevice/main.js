@@ -19,7 +19,7 @@ window.onload = function() {
 			/**
 			 * CREATE DEVICE
 			 */
-			var device = new Device("testtest", "testtest", "outdoor weather");
+			var device = new Device("testtest", "testtest", "other");
 			if (!soxEvent.soxClient.createDevice(device)) {
 				status("Couldn't create device: " + soxEvent.soxClient);
 			}
@@ -33,9 +33,6 @@ window.onload = function() {
 			/**
 			 * DELETE DEVICE
 			 */
-			if (!soxEvent.soxClient.deleteDevice(soxEvent.device)) {
-				status("Couldn't delete device: " + soxEvent.soxClient);
-			}
 		};
 		soxEventListener.creationFailed = function(soxEvent){
 			status("Creation Failed "+soxEvent.device);

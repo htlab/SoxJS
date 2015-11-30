@@ -1,12 +1,10 @@
 var boshService = "http://sox.ht.sfc.keio.ac.jp:5280/http-bind/";
 var xmppServer = "sox.ht.sfc.keio.ac.jp";
-var jid = "guest@sox.ht.sfc.keio.ac.jp";
-var password = "miroguest";
 
 window.onload = function() {
 
     // SoxServerへ接続
-	var client = new SoxClient(boshService, xmppServer, jid, password);
+	var client = new SoxClient(boshService, xmppServer);
 	var soxEventListener = new SoxEventListener();
 
 	soxEventListener.connected = function(soxEvent) {
