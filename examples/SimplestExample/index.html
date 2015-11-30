@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>sensorizer.js</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=1040" />
+		<!--[if lte IE 8]><script src="./js/html5shiv.js"></script><![endif]-->
+		<script src="../../js/lib/jquery-1.10.2.js"></script>
+		<script src="../../js/lib/jquery.dropotron.min.js"></script>
+		<script src="../../js/lib/config.js"></script>
+		<!--  <script src="./js/lib/skel.min.js"></script>-->
+		<!--  <script src="./js/lib/skel-panels.min.js"></script>-->
+		<!-- <script src="./js/lib/json2.js"></script> -->
+		<script src="../../js/lib/underscore-min.js"></script>
+		<script src="../../js/lib/backbone.js"></script>
+		<script src="../../js/lib/strophe.js"></script>
+		<script src="../../js/lib/sox.strophe.pubsub.js"></script>
+		<script src="../../js/lib/strophe.x.js"></script>
+		<script src="../../js/lib/jscron.js"></script>
+
+		<script src="../../js/sox/SoxClient.js"></script>
+		<script src="../../js/sox/SoxEventListener.js"></script>
+		<script src="../../js/sox/Device.js"></script>
+		<script src="../../js/sox/Transducer.js"></script>
+		<script src="../../js/sox/SensorData.js"></script>
+		<script src="main.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+	</head>
+	<body class="no-sidebar">
+
+		<!-- Header Wrapper -->
+		<!-- Logo -->
+		<h1 id="logo" style="font-weight: 700; font-family: 'Arvo'; color: #ed786a;text-shadow: 0.05em 0.075em 0 rgba(0,0,0,0.1);">Subscribe Device</h1>
+		hogehogeというノードのメタデータを表示後、それをサブスクライブして、データを受信したら単純にそれを表示するプログラムです。main.jsをご覧ください。ソースは<a href="../simplestExample.zip">こちらからダウンロードしてください</a>。
+		<!-- Main Wrapper -->
+		<div id="main-wrapper">
+
+			<!-- Main -->
+			<div id="main" class="container">
+				<div class="row">
+					<!-- Content -->
+					<div id="content" class="12u skel-cell-important">
+					</div>
+				</div>
+				<br>
+				<h4>[センサのメタデータ]</h4>
+				   <div id="metaInfo">
+				   </div>
+				
+				<br>
+				<h4>[最新のセンサ情報]</h4>
+				    <div id="latestData">
+					</div>
+				<h></h>
+				<div class="row">
+					<br>
+					<h4>[ログ的なもの]</h4>
+					<!-- Content -->
+					<div id="status" class="12u skel-cell-important">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
